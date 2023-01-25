@@ -22,7 +22,7 @@ class Visualizer:
         self.axs.add_patch(rectangle)
 
     def DrawTheCarBody(self, car):
-        self.DrawRectangle(car.get_x(), car.get_y(), car.get_length(), car.get_width(), car.get_theta())
+        self.DrawRectangle(car.get_x(), car.get_y(), car.get_length(), car.get_width(), car.get_theta(), facecolor = "#89ABE3FF")
     
 
     def DrawCarCenter(self, car):
@@ -77,14 +77,14 @@ class Visualizer:
         self.axs.add_patch(left_wheel)
 
     def DrawTrajectory(self, car):
-        self.axs.plot(car.get_x_history(), car.get_y_history())
+        self.axs.plot(car.get_x_history(), car.get_y_history(), color = '#3A6B35')
 
     def DrawTheWheels(self, car):
         self.DrawFrontWheels(car)
         self.DrawBackWheels(car)
 
     def SaveFig(self, frame):
-        fig_name = "frame = " + str(frame) + ".jpg"
+        fig_name = "frame-" + "{:04n}".format(frame) + ".jpg"
         fig_path = self.frames_save_path + "/" + fig_name
         self.figure.savefig(fig_path)
         

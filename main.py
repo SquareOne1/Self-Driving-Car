@@ -3,9 +3,11 @@ from Simulator import Simulator
 import math
 from Visualization import Visualizer
 
-save_frames_path = "C:/Users/arals/Desktop/SquareOne/Self-Driving-Car/figs"
+save_frames_path = "C:/Users/arals/Desktop/SquareOne/figs"
+save_video_path = "C:/Users/arals/Desktop/SquareOne/figs"
 car = Car(0, 0, 0, math.pi/6, 2, 2.057, 2.665)
-visualizer = Visualizer(save_frames_path)
 
-simulator = Simulator(car, visualizer, 20, 0.1)
-simulator.simulate()
+
+simulator = Simulator(car, save_frames_path, save_video_path, 20, 0.1)
+#simulator.simulate()
+simulator.convert_to_mp4()
