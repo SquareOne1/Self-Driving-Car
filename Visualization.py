@@ -76,7 +76,7 @@ class Visualizer:
         self.axs.add_patch(right_wheel)
         self.axs.add_patch(left_wheel)
 
-    def DrawTrajectory(self, car):
+    def DrawCarTrajectory(self, car):
         self.axs.plot(car.get_x_history(), car.get_y_history(), color = '#3A6B35')
 
     def DrawTheWheels(self, car):
@@ -99,13 +99,18 @@ class Visualizer:
 
     def ClearCurrentActiveAxis(self):
         self.axs.cla()
+    
+    def DrawTrajectory(self, trajectory):
+        self.axs.plot(trajectory.get_waypoints_x(), trajectory.get_waypoints_y())
 
-    def visualize(self, car, frame):
+
+    def visualize(self, car, trajectory, frame):
         axs = self.figure.gca()
         self.DrawTheCarBody(car)
         self.DrawCarCenter(car)
         self.DrawTheWheels(car)
-        self.DrawTrajectory(car)
+        self.DrawTrajectory(trajectory)
+        self.DrawCarTrajectory(car)
         self.SetFigureLimits()
         self.SaveFig(frame)
         self.ClearCurrentActiveAxis()
