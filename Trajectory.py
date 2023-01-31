@@ -23,8 +23,8 @@ class Trajectory:
         waypoints = []
 
         for t in timestamps:
-            x = radius * math.cos(2 * math.pi * t)
-            y =  radius * math.sin(2 * math.pi * t)
+            x = radius * math.cos(t)
+            y =  radius * math.sin(t)
 
             self.waypoints_x.append(x)
             self.waypoints_y.append(y)

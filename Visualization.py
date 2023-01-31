@@ -102,14 +102,29 @@ class Visualizer:
     
     def DrawTrajectory(self, trajectory):
         self.axs.plot(trajectory.get_waypoints_x(), trajectory.get_waypoints_y())
+    
+    def DrawPredictions(self, controller):
 
+        predictions = controller.get_predictions()
+        if predictions:
+            x = [pred[0] for pred in predictions]
+            y = [pred[1] for pred in predictions]
+            self.axs.plot(x, y, "r--")
+    
+    def DrawSelectedPoints(self, point_selector):
 
-    def visualize(self, car, trajectory, frame):
-        axs = self.figure.gca()
+        selected_points = point_selector.get_selected_points()
+        x = [pred[0] for pred in selected_points]
+        y = [pred[1] for pred in selected_points]
+        self.axs.plot(x, y, "r*")
+
+    def visualize(self, car, trajectory, controller,point_selector, frame):
         self.DrawTheCarBody(car)
         self.DrawCarCenter(car)
         self.DrawTheWheels(car)
+        self.DrawPredictions(controller)
         self.DrawTrajectory(trajectory)
+        self.DrawSelectedPoints(point_selector)
         self.DrawCarTrajectory(car)
         self.SetFigureLimits()
         self.SaveFig(frame)
