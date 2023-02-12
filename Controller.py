@@ -92,7 +92,7 @@ class MPC:
     def total_cost(self, flat_control_signal):
         predictions = self.predict_states(flat_control_signal)
         cost = self.compute_velocity_cost(predictions) + \
-               20 * self.compute_tracking_cost(predictions) + \
+               30 * self.compute_tracking_cost(predictions) + \
                10 * self.compute_acceleration_smoothness_cost(flat_control_signal) + \
                10 * self.compute_steering_rate_smoothness_cost(flat_control_signal)
 
