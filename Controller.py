@@ -115,10 +115,7 @@ class MPC:
 
     def minimize_cost_function(self):
         initial_guess = np.zeros(2 * self.look_ahead_steps)
-        print(self.optimization_bounds)
         result = minimize(self.total_cost, initial_guess, bounds=self.optimization_bounds)
-        print("Optimization is Done!!!")
-        print(result.x)
         self.optimal_control_signal = result.x
 
     def send_control_signal_to_car(self):
@@ -130,9 +127,3 @@ class MPC:
         self.minimize_cost_function()
         self.predict_states(self.optimal_control_signal)
         self.send_control_signal_to_car()
-
-'''
-car = Car(0, 0, 0, math.pi/6, 0, 2.057, 2.665)
-controller = MPC(car, look_ahead_steps = 5, desired_speed = 2, delta_t = 0.01)
-print(controller.minimize_cost_function())
-'''
